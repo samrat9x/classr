@@ -1,6 +1,6 @@
 {
-  "name": "MyTask",
-  "short_name": "MyTask",
+  "name": "Class Routine",
+  "short_name": "Class Routine",
   "description": "A simple tool to track the task",
   "start_url": "index.html",
   "display": "standalone",

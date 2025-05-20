@@ -18,6 +18,7 @@ const editTaskNameInput = document.getElementById("editTaskName"); // Get the in
 const editSave = document.getElementById("editSave"); // Get the button to save the edited task
 const editClosePopup = document.getElementById("editClosePopup"); // Get the button to close the edit popup
 const editPriority = document.querySelectorAll(".editImportance input"); // Get the radio buttons for task priority
+const classCounter = document.querySelector(".classCounter"); // Get the element to display the task count
 
 function initializeTabs() {
   ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach((day) => {
@@ -82,6 +83,13 @@ function displayTasks() {
     // -------------------------------------------------------------------------------
 
     taskList.appendChild(taskItem); // Append the task item to the task list
+
+    // -------------------------------------------------------------------
+    let count = 0;
+    for (i in tasks) {
+      count += tasks[i].length; // Count the number of tasks for the active tab
+    } // Count the number of tasks for the active tab
+    classCounter.innerHTML = `Total Classes: ${count}`; // Display the task count
   }); // Append each task to the task list
 } // Display tasks for the active tab
 //--------------------------------------------------------------------------------
