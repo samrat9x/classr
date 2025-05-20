@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyTask</title>
+    <link rel="manifest" href="manifest.json" />
+    <!-- insert sortable library cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"
+      integrity="sha512-Eezs+g9Lq4TCCq0wae01s9PuNWzHYoCMkE97e2qdkYthpI0pzC3UGB03lgEHn2XM85hDOUF6qgqqszs+iXU4UA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- end -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .then(() => console.log("Service Worker Registered"));
+      }
+    </script>
+    <!-- raw css  -->
+    <link rel="stylesheet" href="./style.css" />
+    <!-- Fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <main>
+      <section class="header">
+        <h1>MyTask</h1>
+        <div class="tabs">
+          <!-- Weekday tabs -->
+        </div>
+        <div class="timingSection">
+          <div id="date-container"></div>
+          <div id="time-container"></div>
+        </div>
+      </section>
+
+      <section class="myTask">
+        <button id="addTaskButton">
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+        <div class="shadow-popup"></div>
+        <ul id="taskList" class="drag-area"></ul>
+
+        <!-- Add Task Popup -->
+        <div id="addTaskPopup">
+          <input type="text" id="taskName" placeholder="Task Name" />
+          <div class="weekdays-container">
+            <label><input type="checkbox" value="Sun" /> Sunday</label>
+            <label><input type="checkbox" value="Mon" /> Monday</label>
+            <label><input type="checkbox" value="Tue" /> Tuesday</label>
+            <label><input type="checkbox" value="Wed" /> Wednesday</label>
+            <label><input type="checkbox" value="Thu" /> Thursday</label>
+            <label><input type="checkbox" value="Fri" /> Friday</label>
+            <label><input type="checkbox" value="Sat" /> Saturday</label>
+          </div>
+          <hr />
+          <div class="importance">
+            <span>Priority: </span>
+            <label class="importanceLabelLow"
+              ><input
+                type="radio"
+                name="importance"
+                value="low"
+                style="accent-color: red"
+              />Low</label
+            >
+            <label class="importanceLabelMedium"
+              ><input
+                type="radio"
+                name="importance"
+                value="medium"
+                style="accent-color: yellow"
+              />Medium</label
+            >
+            <label class="importanceLabelHigh"
+              ><input
+                type="radio"
+                name="importance"
+                value="high"
+                style="accent-color: green"
+              />High</label
+            >
+          </div>
+          <button style="background-color: #36f0a2ad" onclick="saveTask()">
+            Save Task
+          </button>
+        </div>
+        <!-- Edit Task Popup -->
+        <div id="editPopup">
+          <p>Edit Task:</p>
+          <input type="text" id="editTaskName" />
+          <div class="editImportance">
+            <span>Priority: </span>
+            <label class="editImportanceLabelLow"
+              ><input
+                type="radio"
+                name="importance"
+                value="low"
+                style="accent-color: red"
+              />Low</label
+            >
+            <label class="editImportanceLabelMedium"
+              ><input
+                type="radio"
+                name="importance"
+                value="medium"
+                style="accent-color: yellow"
+              />Medium</label
+            >
+            <label class="editImportanceLabelHigh"
+              ><input
+                type="radio"
+                name="importance"
+                value="high"
+                style="accent-color: green"
+              />High</label
+            >
+          </div>
+          <div class="btnHolder">
+            <button id="editClosePopup">Cancel</button>
+            <button id="editSave">Ok</button>
+          </div>
+        </div>
+      </section>
+      <p
+        style="
+          text-align: center;
+          background-color: #1b242d00;
+          color: #d9dbd9;
+          font-size: 10px;
+          padding: 50px;
+        "
+      >
+        &copy;
+        <a
+          href="https://samrat.top"
+          style="text-decoration: none; color: #bbd4c0"
+          >SAMRAT</a
+        >
+        | <span class="year-container"></span>
+      </p>
+    </main>
+
+    <script src="./time.js"></script>
+
+    <script src="./task.js"></script>
+
+    <script src="./pwa.js"></script>
+  </body>
+</html>
