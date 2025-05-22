@@ -289,9 +289,15 @@ function tickTheClassByTheTime() {
       tasks[activeTab].forEach((task) => {
         task.completed = true; // Mark the task as completed
       });
+    } else {
+      tasks[activeTab].forEach((task) => {
+        task.completed = false; // Mark the task as not completed
+      });
     }
   }
   saveTasks(); // Save the updated tasks
   displayTasks(); // Display the updated tasks
 } // Mark tasks as completed based on the time
-tickTheClassByTheTime(); // Call the function to mark tasks as completed
+if (activeTab === currentDay) {
+  tickTheClassByTheTime(); // Call the function to mark tasks as completed
+} // Call the function to mark tasks as completed if the active tab is the current day
