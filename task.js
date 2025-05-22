@@ -289,7 +289,9 @@ function tickTheClassByTheTime() {
       tasks[activeTab].forEach((task) => {
         task.completed = true; // Mark the task as completed
       });
-    } else {
+    }
+    if (currentHour > endTime._6th.split(":")[0]) {
+      // If the current time is past the last class
       tasks[activeTab].forEach((task) => {
         task.completed = false; // Mark the task as not completed
       });
