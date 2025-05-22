@@ -265,41 +265,42 @@ shadowPopup.addEventListener("click", (e) => {
 }); // Hide the shadow popup when clicking outside of it
 
 //--------------------------------------------------------------------------------
-// Mark tasks as completed based on the time
-// This function checks the current time and marks tasks as completed if the time has passed
-const endTime = {
-  _1st: "12:45",
-  _2nd: "1:30",
-  _3rd: "2:00",
-  _4th: "3:00",
-  _5th: "3:30",
-  _6th: "4:00",
-};
-function tickTheClassByTheTime() {
-  const currentTime = new Date();
-  const currentHour = currentTime.getHours();
-  const currentMinute = currentTime.getMinutes();
+// // Mark tasks as completed based on the time
+// // This function checks the current time and marks tasks as completed if the time has passed
+// const endTime = {
+//   _1st: "12:45",
+//   _2nd: "1:30",
+//   _3rd: "2:00",
+//   _4th: "3:00",
+//   _5th: "3:30",
+//   _6th: "4:00",
+// };
+// function tickTheClassByTheTime() {
+//   const currentTime = new Date();
+//   const currentHour = currentTime.getHours();
+//   const currentMinute = currentTime.getMinutes();
 
-  for (const key in endTime) {
-    const [endHour, endMinute] = endTime[key].split(":").map(Number);
-    if (
-      currentHour > endHour ||
-      (currentHour === endHour && currentMinute > endMinute)
-    ) {
-      tasks[activeTab].forEach((task) => {
-        task.completed = true; // Mark the task as completed
-      });
-    }
-    if (currentHour > endTime._6th.split(":")[0]) {
-      // If the current time is past the last class
-      tasks[activeTab].forEach((task) => {
-        task.completed = false; // Mark the task as not completed
-      });
-    }
-  }
-  saveTasks(); // Save the updated tasks
-  displayTasks(); // Display the updated tasks
-} // Mark tasks as completed based on the time
-if (activeTab === currentDay) {
-  tickTheClassByTheTime(); // Call the function to mark tasks as completed
-} // Call the function to mark tasks as completed if the active tab is the current day
+//   for (const key in endTime) {
+//     const [endHour, endMinute] = endTime[key].split(":").map(Number);
+//     if (
+//       currentHour > endHour ||
+//       (currentHour === endHour && currentMinute > endMinute)
+//     ) {
+//       tasks[activeTab].forEach((task) => {
+//         task.completed = true; // Mark the task as completed
+//       });
+//     }
+//     if (currentHour > endTime._6th.split(":")[0]) {
+//       // If the current time is past the last class
+//       tasks[activeTab].forEach((task) => {
+//         task.completed = false; // Mark the task as not completed
+//       });
+//     }
+//   }
+//   saveTasks(); // Save the updated tasks
+//   displayTasks(); // Display the updated tasks
+// } // Mark tasks as completed based on the time
+// if (activeTab === currentDay) {
+//   tickTheClassByTheTime(); // Call the function to mark tasks as completed
+// } // Call the function to mark tasks as completed if the active tab is the current day
+// //--------------------------------------------------------------------------------
