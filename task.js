@@ -294,3 +294,4 @@ function tickTheClassByTheTime() {
   saveTasks(); // Save the updated tasks
   displayTasks(); // Display the updated tasks
 } // Mark tasks as completed based on the time
+tickTheClassByTheTime(); // Call the function to mark tasks as completed

@@ -1,4 +1,4 @@
-const cacheName = "classRoutineCache-v3"; // Updated cache version
+const cacheName = "classRoutineCache-v4"; // Updated cache version
 const assetsToCache = [
   "index.html",
   "style.css",
