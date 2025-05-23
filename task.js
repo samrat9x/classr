@@ -95,7 +95,7 @@ function displayTasks() {
     // -------------------------------------------------------------------------------
 
     taskList.appendChild(taskItem); // Append the task item to the task list
-    countClass(); // Call the function to count tasks
+    countClass(); // Update the task count
   }); // Append each task to the task list
 } // Display tasks for the active tab
 //--------------------------------------------------------------------------------
@@ -223,6 +223,7 @@ function resetTasksIfDateChanged() {
 // Call this function on page load
 window.onload = () => {
   resetTasksIfDateChanged(); // Ensure tasks are reset if the date has changed
+  countClass(); // Update the task count
 }; // Call the function to reset tasks if the date has changed
 
 //--------------------------------------------------------------------------------
@@ -352,7 +353,7 @@ function countClass() {
   for (i in tasks) {
     count2 += tasks[i].length; // Count the number of tasks for the active tab
   } // Count the number of tasks for the active tab
-  classCounter.innerHTML = `Total Classes: ${count2 - count}`; // Display the task count
+  classCounter.innerHTML = `Total Classes: ${count2 - count}`; // Update the task count
 }
 
 // -------------------------------------------------------------------
