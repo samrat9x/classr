@@ -274,44 +274,44 @@ shadowPopup.addEventListener("click", (e) => {
 //--------------------------------------------------------------------------------
 // Mark tasks as completed based on the time
 // This function checks the current time and marks tasks as completed if the time has passed
-const endTime = {
-  _1st: "12:45",
-  _2nd: "13:30",
-  _3rd: "14:00",
-  _4th: "15:00",
-  _5th: "15:30",
-  _6th: "16:00",
-};
-function tickTheClassByTheTime() {
-  const currentTime = new Date();
-  const currentHour = currentTime.getHours();
-  const currentMinute = currentTime.getMinutes();
+// const endTime = {
+//   _1st: "12:45",
+//   _2nd: "13:30",
+//   _3rd: "14:00",
+//   _4th: "15:00",
+//   _5th: "15:30",
+//   _6th: "16:00",
+// };
+// function tickTheClassByTheTime() {
+//   const currentTime = new Date();
+//   const currentHour = currentTime.getHours();
+//   const currentMinute = currentTime.getMinutes();
 
-  const currentTimeString = `${currentHour}:${currentMinute}`; // Get the current time in 'HH:MM' format
-  if (currentTimeString > endTime._1st) {
-    tasks[activeTab][0].completed = true; // Mark the first task as completed
-  } // Mark tasks as completed based on the time
-  if (currentTimeString > endTime._2nd) {
-    tasks[activeTab][1].completed = true; // Mark the first task as completed
-  } // Mark tasks as completed based on the time
-  if (currentTimeString > endTime._3rd) {
-    tasks[activeTab][2].completed = true; // Mark the first task as completed
-  } // Mark tasks as completed based on the time
-  if (currentTimeString > endTime._4th) {
-    tasks[activeTab][3].completed = true; // Mark the first task as completed
-  } // Mark tasks as completed based on the time
-  if (currentTimeString > endTime._5th) {
-    tasks[activeTab][4].completed = true; // Mark the first task as completed
-  } // Mark tasks as completed based on the time
-  if (currentTimeString > endTime._6th) {
-    tasks[activeTab].forEach((e) => (e.completed = true)); // Mark all tasks as completed
-  } // Mark tasks as completed based on the time
+//   const currentTimeString = `${currentHour}:${currentMinute}`; // Get the current time in 'HH:MM' format
+//   if (currentTimeString > endTime._1st) {
+//     tasks[activeTab][0].completed = true; // Mark the first task as completed
+//   } // Mark tasks as completed based on the time
+//   if (currentTimeString > endTime._2nd) {
+//     tasks[activeTab][1].completed = true; // Mark the first task as completed
+//   } // Mark tasks as completed based on the time
+//   if (currentTimeString > endTime._3rd) {
+//     tasks[activeTab][2].completed = true; // Mark the first task as completed
+//   } // Mark tasks as completed based on the time
+//   if (currentTimeString > endTime._4th) {
+//     tasks[activeTab][3].completed = true; // Mark the first task as completed
+//   } // Mark tasks as completed based on the time
+//   if (currentTimeString > endTime._5th) {
+//     tasks[activeTab][4].completed = true; // Mark the first task as completed
+//   } // Mark tasks as completed based on the time
+//   if (currentTimeString > endTime._6th) {
+//     tasks[activeTab].forEach((e) => (e.completed = true)); // Mark all tasks as completed
+//   } // Mark tasks as completed based on the time
 
-  saveTasks(); // Save the updated tasks
-  displayTasks(); // Display the updated tasks
-} // Mark tasks as completed based on the time
+//   saveTasks(); // Save the updated tasks
+//   displayTasks(); // Display the updated tasks
+// } // Mark tasks as completed based on the time
 
-tickTheClassByTheTime(); // Call the function to mark tasks as completed based on the time
+// tickTheClassByTheTime(); // Call the function to mark tasks as completed based on the time
 
 //---------------------------------------------------------------------
 // Add a break task
