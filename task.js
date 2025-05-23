@@ -29,6 +29,7 @@ const classCounter = $(".classCounter"); // Get the element to display the task 
 const plusBtn = $(".fa-circle-xmark"); // Get the plus button for adding a new task
 const dragArea = $(".drag-area"); // Get the area for dragging and dropping tasks
 const shadowPopup = $(".shadow-popup"); // Get the shadow popup element
+const addaBreakButton = $(".addaBreak"); // Get the button to add a break
 
 function initializeTabs() {
   ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach((day) => {
@@ -313,3 +314,30 @@ function tickTheClassByTheTime() {
 tickTheClassByTheTime(); // Call the function to mark tasks as completed based on the time
 
 //---------------------------------------------------------------------
+// Add a break task
+function addaBreak() {
+  const aBreak = "xxxxxxxxxx"; // Define a break task
+  taskNameInput.value = aBreak; // Set the input field to the break task
+  const taskName = taskNameInput.value.trim();
+  tasks[activeTab] = tasks[activeTab] || []; // Initialize the day if it doesn't exist
+  tasks[activeTab].push({
+    name: taskName,
+    completed: false,
+    priority: "low",
+  }); // Add the new task to the selected days
+
+  saveTasks();
+  shadowPopup.style.display = "none"; // Hide the shadow popup when clicking outside
+  taskNameInput.value = ""; // Clear input field
+  $$(".weekdays-container input:checked").forEach(
+    (checkbox) => (checkbox.checked = false)
+  ); // Clear checkboxes
+  $$(".importance input:checked").forEach(
+    (checkbox) => (checkbox.checked = false)
+  ); // Clear radio buttons
+  addTaskPopup.style.display = "none"; // Hide the popup
+  plusBtn.classList.remove("rotatePlus"); // Rotate the button back to its original position
+  displayTasks(); // Show the updated tasks
+}
+
+// -------------------------------------------------
