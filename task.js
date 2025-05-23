@@ -326,7 +326,7 @@ function addaBreak() {
     priority: "low",
   }); // Add the new task to the selected days
 
-  saveTasks();
+  // saveTasks();
   shadowPopup.style.display = "none"; // Hide the shadow popup when clicking outside
   taskNameInput.value = ""; // Clear input field
   $$(".weekdays-container input:checked").forEach(
