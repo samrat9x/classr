@@ -1,24 +1,34 @@
+function $(selector) {
+  return document.querySelector(selector);
+} // Selects the first element matching the selector
+function $$(selector) {
+  return document.querySelectorAll(selector);
+} // Selects all elements matching the selector
 // Every comments are written at the end of the statement
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || {}; // Initialize tasks from local storage. If no tasks are found, initialize with an empty object
 const currentDay = new Date().toLocaleString("en-us", {
   weekday: "short",
 }); // Get the current day in short format (e.g., "Mon", "Tue", etc.)
-const tabsContainer = document.querySelector(".tabs"); // Get the container for the tabs
-const taskList = document.getElementById("taskList"); // Get the task list element
+const tabsContainer = $(".tabs"); // Get the container for the tabs
+const taskList = $("#taskList"); // Get the task list element
 let activeTab = currentDay; // Set the active tab to the current day
 
-const addTaskButton = document.getElementById("addTaskButton"); // Get the button to add a new task
-const addTaskPopup = document.getElementById("addTaskPopup"); // Get the popup for adding a new task
-const taskNameInput = document.getElementById("taskName"); // Get the input field for the task name
-const closePopupButton = document.getElementById("closePopup"); // Get the button to close the popup
+const addTaskButton = $("#addTaskButton"); // Get the button to add a new task
+const addTaskPopup = $("#addTaskPopup"); // Get the popup for adding a new task
+const taskNameInput = $("#taskName"); // Get the input field for the task name
+const closePopupButton = $("#closePopup"); // Get the button to close the popup
 
-const editPopup = document.getElementById("editPopup"); // Get the popup for editing a task
-const editTaskNameInput = document.getElementById("editTaskName"); // Get the input field for editing the task name
-const editSave = document.getElementById("editSave"); // Get the button to save the edited task
-const editClosePopup = document.getElementById("editClosePopup"); // Get the button to close the edit popup
-const editPriority = document.querySelectorAll(".editImportance input"); // Get the radio buttons for task priority
-const classCounter = document.querySelector(".classCounter"); // Get the element to display the task count
+const editPopup = $("#editPopup"); // Get the popup for editing a task
+const editTaskNameInput = $("#editTaskName"); // Get the input field for editing the task name
+const editSave = $("#editSave"); // Get the button to save the edited task
+const editClosePopup = $("#editClosePopup"); // Get the button to close the edit popup
+const editPriority = $$(".editImportance input"); // Get the radio buttons for task priority
+const classCounter = $(".classCounter"); // Get the element to display the task count
+
+const plusBtn = $(".fa-circle-xmark"); // Get the plus button for adding a new task
+const dragArea = $(".drag-area"); // Get the area for dragging and dropping tasks
+const shadowPopup = $(".shadow-popup"); // Get the shadow popup element
 
 function initializeTabs() {
   ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach((day) => {
@@ -33,7 +43,7 @@ function initializeTabs() {
 
 function switchTab(day) {
   activeTab = day; // Set the active tab to the selected day
-  document.querySelectorAll(".tab-button").forEach((btn) => {
+  $$(".tab-button").forEach((btn) => {
     btn.classList.toggle("active", btn.textContent === day); // Toggle the active class based on the selected day
   }); // Switch the active class to the selected tab
   displayTasks(); // Display tasks for the selected day
@@ -122,9 +132,7 @@ function editTask(index) {
 
 editSave.addEventListener("click", () => {
   const newTaskName = editTaskNameInput.value.trim(); // Get the new task name from the input field
-  const selectedPriority = document.querySelector(
-    ".editImportance input:checked"
-  )?.value; // Get the selected priority from the radio buttons
+  const selectedPriority = $(".editImportance input:checked")?.value; // Get the selected priority from the radio buttons
   if (newTaskName && selectedPriority) {
     tasks[activeTab][indexPreserve].priority = selectedPriority; // Update the task priority
     tasks[activeTab][indexPreserve].name = newTaskName; // Update the task name
@@ -152,12 +160,10 @@ function saveTasks() {
 
 function saveTask() {
   const taskName = taskNameInput.value.trim();
-  const selectedDays = Array.from(
-    document.querySelectorAll(".weekdays-container input:checked")
-  ).map((checkbox) => checkbox.value); // Get selected days from checkboxes
-  const selectedPriority = document.querySelector(
-    ".importance input:checked"
-  )?.value; // Get selected priority from checkboxes
+  const selectedDays = Array.from($$(".weekdays-container input:checked")).map(
+    (checkbox) => checkbox.value
+  ); // Get selected days from checkboxes
+  const selectedPriority = $(".importance input:checked")?.value; // Get selected priority from checkboxes
 
   if (taskName && selectedDays.length && selectedPriority) {
     selectedDays.forEach((day) => {
@@ -171,16 +177,16 @@ function saveTask() {
     saveTasks();
     shadowPopup.style.display = "none"; // Hide the shadow popup when clicking outside
     taskNameInput.value = ""; // Clear input field
-    document
-      .querySelectorAll(".weekdays-container input:checked")
-      .forEach((checkbox) => (checkbox.checked = false)); // Clear checkboxes
+    $$(".weekdays-container input:checked").forEach(
+      (checkbox) => (checkbox.checked = false)
+    ); // Clear checkboxes
     addTaskPopup.style.display = "none"; // Hide the popup
     plusBtn.classList.remove("rotatePlus"); // Rotate the button back to its original position
     displayTasks(); // Show the updated tasks
   }
 } // Save a new task to the list
 //--------------------------------------------------------------------------------
-const plusBtn = document.querySelector(".fa-circle-xmark");
+
 function rotatePlus() {
   plusBtn.classList.toggle("rotatePlus"); // Rotate the button when clicked
 } // Rotate the add task button
@@ -223,7 +229,7 @@ window.onload = () => {
 }; // Call the function to reset tasks if the date has changed
 
 //--------------------------------------------------------------------------------
-const dragArea = document.querySelector(".drag-area");
+
 function saveSorted() {
   const items = JSON.parse(localStorage.getItem("tasks"));
   const dudu = Array.from(dragArea.children).map((task) => {
@@ -256,7 +262,7 @@ new Sortable(dragArea, {
 initializeTabs();
 
 // Shadow popup when click + sign
-const shadowPopup = document.querySelector(".shadow-popup");
+
 shadowPopup.addEventListener("click", (e) => {
   if (e.target === shadowPopup) {
     shadowPopup.style.display = "none"; // Hide the shadow popup when clicking outside
