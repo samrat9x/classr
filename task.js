@@ -336,7 +336,7 @@ function addaBreak() {
 }
 
 // -------------------------------------------------
-
+// Count the number of classes
 function countClass() {
   let count = 0;
   const retrieveTasks = JSON.parse(localStorage.getItem("tasks"));
