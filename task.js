@@ -76,6 +76,9 @@ function displayTasks() {
     const checkbox = taskItem.querySelector(".checkbox"); // Get the checkbox for the task
     const editButton = taskItem.querySelector(".edit"); // Get the edit button
     const deleteButton = taskItem.querySelector(".delete"); // Get the delete button
+    if (task.addaBreak) {
+      editButton.style.visibility = "hidden"; // Hide the edit button if the task is a break
+    }
 
     checkbox.addEventListener("pointerdown", (e) => {
       e.stopPropagation(); // Prevent event bubbling
