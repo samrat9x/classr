@@ -227,6 +227,10 @@ function resetTasksIfDateChanged() {
 window.onload = () => {
   resetTasksIfDateChanged(); // Ensure tasks are reset if the date has changed
   countClass(); // Update the task count
+  $(".github-corner").addEventListener("click", (e) =>
+    window.open("https://github.com/samrat9x/classr", "_blank")
+  );
+  $("#loading").style.display = "none";
 }; // Call the function to reset tasks if the date has changed
 
 //--------------------------------------------------------------------------------
