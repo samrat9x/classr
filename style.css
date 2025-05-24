@@ -294,5 +294,5 @@ i {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0 0 5px 0;
+  border-radius: 0 5px 0 0;
 }
