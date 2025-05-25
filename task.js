@@ -30,6 +30,7 @@ const plusBtn = $(".fa-circle-xmark"); // Get the plus button for adding a new t
 const dragArea = $(".drag-area"); // Get the area for dragging and dropping tasks
 const shadowPopup = $(".shadow-popup"); // Get the shadow popup element
 const addaBreakButton = $(".addaBreak"); // Get the button to add a break
+const taskTime = $("#taskTime"); // Get the element to display the task time
 
 function initializeTabs() {
   ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach((day) => {
@@ -66,6 +67,7 @@ function displayTasks() {
                 ? "<i class='fa-solid fa-circle-check'></i>"
                 : "<i class='fa-regular fa-circle-check'></i>"
             }</span>
+            <span class="time">${task.time}</span>
             <div class="task-name ${task.completed ? "completed" : ""}">${
       task.name
     }</div>
@@ -172,6 +174,7 @@ function saveTask() {
         name: taskName,
         completed: false,
         priority: selectedPriority,
+        time: taskTime.value, // Get the task time from the input field
       }); // Add the new task to the selected days
     });
     saveTasks();
@@ -231,6 +234,8 @@ window.onload = () => {
     window.open("https://github.com/samrat9x/classr", "_blank")
   );
   $("#loading").style.display = "none";
+  tickTheClassByTheTime(); // Call the function to mark tasks as completed based on the time
+  const timeEnd = setInterval(tickTheClassByTheTime, 10000); // Check every 10 seconds
 }; // Call the function to reset tasks if the date has changed
 
 //--------------------------------------------------------------------------------
@@ -275,44 +280,39 @@ shadowPopup.addEventListener("click", (e) => {
 //--------------------------------------------------------------------------------
 // Mark tasks as completed based on the time
 // This function checks the current time and marks tasks as completed if the time has passed
-const endTime = {
-  _1st: "12:45",
-  _2nd: "13:30",
-  _3rd: "14:00",
-  _4th: "15:00",
-  _5th: "15:30",
-  _6th: "16:00",
-};
+
 function tickTheClassByTheTime() {
   const currentTime = new Date();
   const currentHour = currentTime.getHours();
   const currentMinute = currentTime.getMinutes();
+  const currentTotalMinutes = currentHour * 60 + currentMinute;
 
-  const currentTimeString = `${currentHour}:${currentMinute}`; // Get the current time in 'HH:MM' format
-  if (currentTimeString > endTime._1st) {
-    tasks[activeTab][0].completed = true; // Mark the first task as completed
-  } // Mark tasks as completed based on the time
-  if (currentTimeString > endTime._2nd) {
-    tasks[activeTab][1].completed = true; // Mark the first task as completed
-  } // Mark tasks as completed based on the time
-  if (currentTimeString > endTime._3rd) {
-    tasks[activeTab][2].completed = true; // Mark the first task as completed
-  } // Mark tasks as completed based on the time
-  if (currentTimeString > endTime._4th) {
-    tasks[activeTab][3].completed = true; // Mark the first task as completed
-  } // Mark tasks as completed based on the time
-  if (currentTimeString > endTime._5th) {
-    tasks[activeTab][4].completed = true; // Mark the first task as completed
-  } // Mark tasks as completed based on the time
-  if (currentTimeString > endTime._6th) {
-    tasks[activeTab].forEach((e) => (e.completed = false)); // Mark all tasks as completed
-  } // Mark tasks as completed based on the time
+  const retrieveTasks = JSON.parse(localStorage.getItem("tasks")) || {};
 
-  saveTasks(); // Save the updated tasks
-  displayTasks(); // Display the updated tasks
-} // Mark tasks as completed based on the time
+  const dayTasks = retrieveTasks[activeTab] || [];
+  dayTasks.forEach((task) => {
+    if (task.time) {
+      // Parse task time as minutes since midnight
+      const [taskHour, taskMinute] = task.time.split(":").map(Number);
+      const taskTotalMinutes = taskHour * 60 + taskMinute;
+      if (taskTotalMinutes <= currentTotalMinutes) {
+        task.completed = true;
+        if (currentTotalMinutes > 960) {
+          task.completed = false; // Reset tasks after 4 PM (960 minutes)
+        }
+      }
+    }
+  });
 
-tickTheClassByTheTime(); // Call the function to mark tasks as completed based on the time
+  // Save and display updated tasks
+  retrieveTasks[activeTab] = dayTasks;
+  localStorage.setItem("tasks", JSON.stringify(retrieveTasks));
+  displayTasks();
+  if (currentTotalMinutes > 960) {
+    clearInterval(timeEnd); // Stop checking after 4 PM
+  }
+  console.log("This is ticking the class by the time function");
+}
 
 //---------------------------------------------------------------------
 // Add a break task
@@ -327,6 +327,7 @@ function addaBreak() {
     completed: false,
     priority: "low",
     addaBreak: true,
+    time: taskTime.value, // Get the task time from the input field
   }); // Add the new task to the selected days
 
   saveTasks();
