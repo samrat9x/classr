@@ -31,6 +31,7 @@ const dragArea = $(".drag-area"); // Get the area for dragging and dropping task
 const shadowPopup = $(".shadow-popup"); // Get the shadow popup element
 const addaBreakButton = $(".addaBreak"); // Get the button to add a break
 const taskTime = $("#taskTime"); // Get the element to display the task time
+const taskTime2 = $("#taskTime2"); // Get the element to display the task time
 
 function initializeTabs() {
   ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach((day) => {
@@ -134,9 +135,11 @@ function editTask(index) {
 editSave.addEventListener("click", () => {
   const newTaskName = editTaskNameInput.value.trim(); // Get the new task name from the input field
   const selectedPriority = $(".editImportance input:checked")?.value; // Get the selected priority from the radio buttons
+  const taskTimeValue = taskTime2.value; // Get the task time from the input field
   if (newTaskName && selectedPriority) {
     tasks[activeTab][indexPreserve].priority = selectedPriority; // Update the task priority
     tasks[activeTab][indexPreserve].name = newTaskName; // Update the task name
+    tasks[activeTab][indexPreserve].time = taskTimeValue; // Update the task time
     saveTasks();
     displayTasks();
     editPopup.style.display = "none"; // Hide the edit popup
