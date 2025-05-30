@@ -1,4 +1,4 @@
-const cacheName = "classRoutineCache-v1.0.15"; // Updated cache version
+const cacheName = "classRoutineCache-v1.0.16"; // Updated cache version
 const assetsToCache = [
   "index.html",
   "style.css",
@@ -8,6 +8,7 @@ const assetsToCache = [
   "icon-192x192.png",
   "icon-512x512.png",
   "./img/whatsappImage.png",
+  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css",
 ];
 
 self.addEventListener("install", (event) => {
