@@ -1,4 +1,4 @@
-const cacheName = "classRoutineCache-v1.0.17"; // Updated cache version
+const cacheName = "classRoutineCache-v1.0.18"; // Updated cache version
 const assetsToCache = [
   "index.html",
   "style.css",
@@ -7,6 +7,7 @@ const assetsToCache = [
   "manifest.json",
   "icon-192x192.png",
   "icon-512x512.png",
+  "sortable.js",
   "./img/whatsappImage.png",
   "./fontawesome/fontawesome-free-6.7.2-web/css/all.min.css",
   "./fontawesome/fontawesome-free-6.7.2-web/css/fontawesome.min.css",
