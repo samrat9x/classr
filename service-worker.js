@@ -1,4 +1,4 @@
-const cacheName = "classRoutineCache-v1.0.16"; // Updated cache version
+const cacheName = "classRoutineCache-v1.0.17"; // Updated cache version
 const assetsToCache = [
   "index.html",
   "style.css",
@@ -8,7 +8,16 @@ const assetsToCache = [
   "icon-192x192.png",
   "icon-512x512.png",
   "./img/whatsappImage.png",
-  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css",
+  "./fontawesome/fontawesome-free-6.7.2-web/css/all.min.css",
+  "./fontawesome/fontawesome-free-6.7.2-web/css/fontawesome.min.css",
+  "./fontawesome/fontawesome-free-6.7.2-web/webfonts/fa-brands-400.ttf",
+  "./fontawesome/fontawesome-free-6.7.2-web/webfonts/fa-brands-400.woff2",
+  "./fontawesome/fontawesome-free-6.7.2-web/webfonts/fa-regular-400.ttf",
+  "./fontawesome/fontawesome-free-6.7.2-web/webfonts/fa-regular-400.woff2",
+  "./fontawesome/fontawesome-free-6.7.2-web/webfonts/fa-solid-900.ttf",
+  "./fontawesome/fontawesome-free-6.7.2-web/webfonts/fa-solid-900.woff2",
+  "./fontawesome/fontawesome-free-6.7.2-web/webfonts/fa-v4compatibility.ttf",
+  "./fontawesome/fontawesome-free-6.7.2-web/webfonts/fa-v4compatibility.woff2",
 ];
 
 self.addEventListener("install", (event) => {
