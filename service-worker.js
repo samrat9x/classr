@@ -1,4 +1,4 @@
-const cacheName = "classRoutineCache-v1.0.18"; // Updated cache version
+const cacheName = "classRoutineCache-v1.0.19"; // Updated cache version
 const assetsToCache = [
   "index.html",
   "style.css",
@@ -19,6 +19,7 @@ const assetsToCache = [
   "./fontawesome/fontawesome-free-6.7.2-web/webfonts/fa-solid-900.woff2",
   "./fontawesome/fontawesome-free-6.7.2-web/webfonts/fa-v4compatibility.ttf",
   "./fontawesome/fontawesome-free-6.7.2-web/webfonts/fa-v4compatibility.woff2",
+  "./img/loading.gif",
 ];
 
 self.addEventListener("install", (event) => {
